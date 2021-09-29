@@ -107,8 +107,13 @@ contract MyEpicNFT is ERC721URIStorage {
         console.log("this is my NFT contract. Woah!");
     }
 
+    function getNFTsMintedSoFar() public view returns (uint256) {
+        return _tokenIds.current();
+    }
+
     function makeAnEpicNFT() public {
         uint256 newItemId = _tokenIds.current();
+        require(newItemId < 100, "Maximuum number of NFTs minted!!");
         string memory first = pickRandomFirstWord(newItemId);
         string memory second = pickRandomSecondWord(newItemId);
         string memory third = pickRandomThirdWord(newItemId);
